@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34723.18
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Life.Game", "Life.Game\Life.Game.csproj", "{E22FDD9A-92E3-4D1E-AAE4-22A2DA6AD7BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Life.Tests", "Life.Tests\Life.Tests.csproj", "{F198B860-2ED3-4713-9771-0C014B8AB696}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E22FDD9A-92E3-4D1E-AAE4-22A2DA6AD7BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E22FDD9A-92E3-4D1E-AAE4-22A2DA6AD7BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E22FDD9A-92E3-4D1E-AAE4-22A2DA6AD7BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E22FDD9A-92E3-4D1E-AAE4-22A2DA6AD7BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F198B860-2ED3-4713-9771-0C014B8AB696}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F198B860-2ED3-4713-9771-0C014B8AB696}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F198B860-2ED3-4713-9771-0C014B8AB696}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F198B860-2ED3-4713-9771-0C014B8AB696}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {810D8D71-2AD4-4D05-9972-200E632B92C3}
+	EndGlobalSection
+EndGlobal
