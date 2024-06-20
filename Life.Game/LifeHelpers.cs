@@ -14,7 +14,7 @@ public static class LifeHelpers {
     T[,] result = new T[dim, dim2];
     for (int i = 0; i < dim; i++) {
       for (int j = 0; j < dim2; j++) {
-        result[i, j] = source[i * dim + j];
+        result[i, j] = source[i * dim2 + j];
       }
     }
     return result;
@@ -25,16 +25,60 @@ public static class LifeHelpers {
       .Sum(o => (x + o.First >= 0) && (x + o.First < board.GetLength(0)) && (y + o.Second >= 0) && (y + o.Second < board.GetLength(1) && board[x + o.First, y + o.Second]) ? 1 : 0);
 
   /*
-  // TODO AYS - This doesn't need to take the max values as we can get the number of rows from board.GetLength(0) and the number of columns from board.GetLength(1)
-  public static int[,] Next(int[,] board, int maxX, int maxY) {
-    int[,] next = new int[maxX, maxY];
-    for (int y = 0; y < maxY; y++) {
-      for (int x = 0; x < maxX; x++) {
-        int count = Count(board, x, y, maxX, maxY);
-        next[x, y] = count is 3 or 4 ? 1 : 0;
-      }
-    }
-    return next;
-  }
-*/
+    At each step in time, the following transitions occur:
+        Any live cell with fewer than two live neighbours dies, as if by underpopulation.
+        Any live cell with two or three live neighbours lives on to the next generation.
+        Any live cell with more than three live neighbours dies, as if by overpopulation.
+        Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
+
+    As a table...
+      live	count	result
+        t    1      f
+        t    2      t
+        t    3      t
+        t    4      f
+        t    5      f
+        t    6      f
+        t    7      f
+        t    8      f
+        f    1      f
+        f    2      f
+        f    3      t
+        f    4      f
+        f    5      f
+        f    6      f
+        f    7      f
+        f    8      f
+        
+        So cell is alive if...
+        t    2      t
+        t    3      t
+        f    3      t
+   */
+
+  public static bool[,] Next(bool[,] board) =>
+    board.Cast<bool>().ToArray()
+      .Select((cell, pos) => {
+        (int x, int y) = PosToCoords(board, pos);
+        int count = Count(board, x, y);
+        // ie when count==2 and cell, or when count ==3
+        return (count == 2 && cell) || count == 3;
+
+        bool jim = count switch {
+          2 when cell => true,
+          3 => true,
+          _ => false
+        };
+
+        return cell switch {
+          true when count is 3 or 4 => true,
+          false when count == 3 => true,
+          _ => false
+        };
+      })
+      .ToArray()
+      .To2D(board.GetLength(0));
+
+  public static (int x, int y) PosToCoords(bool[,] board, int pos) =>
+    (pos / board.GetLength(1), pos % board.GetLength(1));
 }

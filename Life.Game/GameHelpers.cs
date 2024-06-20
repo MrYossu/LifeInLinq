@@ -1,16 +1,26 @@
-﻿namespace Life.Game;
+﻿using Pixata.Extensions;
+
+namespace Life.Game;
 
 public static class GameHelpers {
   /// <summary>
   /// Converts a string representation of a board to the 2D bool array the code uses
   /// </summary>
-  /// <param name="b">A string representation of the board, where a space represents a dead cell, and a non-space represents a live cell. The string is expected to contain Environment.NewLines at the end of each row</param>
+  /// <param name="b">A string representation of the board, where a space or full stop represents a dead cell, and a non-space represents a live cell. The string is expected to contain Environment.NewLines at the end of each row</param>
   /// <returns>A 2D bool array representing the board</returns>
   public static bool[,] ToBoard(this string b) =>
     b.Replace(Environment.NewLine, "")
-      .Select(c => c != ' ')
+      .Select(c => c != '.' && c != ' ')
       .ToArray()
       .To2D(4);
+
+  public static string ToBoardString(this bool[,] board) {
+    int dim = board.GetLength(1);
+    string str = board.Cast<bool>().Select(c => c ? "*" : ".").JoinStr("");
+    return Enumerable.Range(0, str.Length / dim)
+      .Select(i => str.Substring(i * dim, dim))
+      .JoinStr(Environment.NewLine);
+  }
 
   public static bool[,] InitialiseEmpty(int maxX, int maxY) =>
     new bool[maxX, maxY];
