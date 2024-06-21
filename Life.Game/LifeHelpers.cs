@@ -54,6 +54,8 @@ public static class LifeHelpers {
         t    2      t
         t    3      t
         f    3      t
+
+   TODO AYS - Although we can use the simple logic below, if we rewrite it as a switch with two int[] (one for births, one for continued life) then we can implement different sets of rules
    */
 
   public static bool[,] Next(bool[,] board) =>
