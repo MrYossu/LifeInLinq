@@ -63,24 +63,32 @@ public static class LifeHelpers {
       .Select((cell, pos) => {
         (int x, int y) = PosToCoords(board, pos);
         int count = Count(board, x, y);
-        // ie when count==2 and cell, or when count ==3
-        return (count == 2 && cell) || count == 3;
 
-        bool jim = count switch {
-          2 when cell => true,
-          3 => true,
+        // ie when count==2 and cell, or when count==3
+        //return (count == 2 && cell) || count == 3;
+
+        // General logic that can handle any Life rules. Eventually we will pass these in as parameters, derived from a string, eg B3/S23
+        int[] survives = [2,3]; // Any live cell with this number of live neighbours is alive in the next generation
+        int[] born = [3]; // Any dead cell with this number of live neighbours becomes alive in the next generation
+
+        bool res = cell switch {
+          true when survives.Contains(count) => true,
+          false when born.Contains(count) => true,
           _ => false
         };
+        Console.WriteLine($"{pos}: ({x}, {y}) is {cell} - count: {count}, res: {res}");
 
         return cell switch {
-          true when count is 3 or 4 => true,
-          false when count == 3 => true,
+          true when survives.Contains(count) => true,
+          false when born.Contains(count) => true,
           _ => false
         };
       })
       .ToArray()
       .To2D(board.GetLength(0));
 
+  // board.GetLength(0) is cols
+  // board.GetLength(1) is rows
   public static (int x, int y) PosToCoords(bool[,] board, int pos) =>
-    (pos / board.GetLength(1), pos % board.GetLength(1));
+    (pos / board.GetLength(0), pos % board.GetLength(0));
 }

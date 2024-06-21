@@ -12,10 +12,10 @@ public static class GameHelpers {
     b.Replace(Environment.NewLine, "")
       .Select(c => c != '.' && c != ' ')
       .ToArray()
-      .To2D(4);
+      .To2D(b.Replace(Environment.NewLine, "").Length / b.IndexOf(Environment.NewLine));
 
   public static string ToBoardString(this bool[,] board) {
-    int dim = board.GetLength(1);
+    int dim = board.GetLength(0);
     string str = board.Cast<bool>().Select(c => c ? "*" : ".").JoinStr("");
     return Enumerable.Range(0, str.Length / dim)
       .Select(i => str.Substring(i * dim, dim))
