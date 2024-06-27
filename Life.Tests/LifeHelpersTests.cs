@@ -90,8 +90,9 @@ public class LifeHelpersTests {
   [DataRow(5, 1, 2)]
   public void LifeHelpers_PosToCoords2x3(int pos, int x, int y) {
     bool[,] board = new bool[2, 3];
-    Assert.AreEqual(x, PosToCoords(board, pos).x);
-    Assert.AreEqual(y, PosToCoords(board, pos).y);
+    (int xRes, int yRes) = PosToCoords(board, pos);
+    Assert.AreEqual(x, xRes, $"Expected pos: {pos} -> ({x}, {y}), but found ({xRes}, {yRes})");
+    Assert.AreEqual(y, yRes, $"Expected pos: {pos} -> ({x}, {y}), but found ({xRes}, {yRes})");
   }
 
   [DataTestMethod]
