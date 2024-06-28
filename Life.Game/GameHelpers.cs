@@ -19,9 +19,9 @@ public static class GameHelpers {
   /// </summary>
   /// <param name="board">The Life board as a 2D bool array</param>
   /// <returns></returns>
-  public static string ToBoardString(this bool[,] board) {
+  public static string ToBoardString(this bool[,] board, bool spaces = false) {
     int dim = board.GetLength(1);
-    string str = board.Cast<bool>().Select(c => c ? "*" : ".").JoinStr("");
+    string str = board.Cast<bool>().Select(c => c ? "*" : spaces ? " " : ".").JoinStr("");
     return Enumerable.Range(0, str.Length / dim)
       .Select(i => str.Substring(i * dim, dim))
       .JoinStr(Environment.NewLine);
@@ -38,6 +38,7 @@ public static class GameHelpers {
         board[x, y] = r.Next() % 100 < 15;
       }
     }
+
     return board;
   }
 
@@ -62,8 +63,10 @@ public static class GameHelpers {
       for (int x = 0; x < maxX; x++) {
         Console.Write(board[x, y] ? "*" : "-");
       }
+
       Console.WriteLine("|");
     }
+
     Console.WriteLine(new string('¯', maxX + 2));
   }
 }

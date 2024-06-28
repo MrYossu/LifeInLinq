@@ -76,8 +76,6 @@ public static class LifeHelpers {
           false when born.Contains(count) => true,
           _ => false
         };
-        Console.WriteLine($"{pos}: ({x}, {y}) is {cell} - count: {count}, res: {res}");
-
         return cell switch {
           true when survives.Contains(count) => true,
           false when born.Contains(count) => true,
