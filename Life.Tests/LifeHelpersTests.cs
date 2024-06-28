@@ -138,32 +138,30 @@ public class LifeHelpersTests {
 
   #region Next
 
-  // Test a few still lifes first
-  [TestMethod]
-  public void LifeHelpers_Next_Block() {
-    bool[,] block =
-      """
-        ....
-        .**.
-        .**.
-        ....
-        """
-        .ToBoard();
-    Assert.AreEqual(block.ToBoardString(), Next(block).ToBoardString(),
-      $"Expected:\n{block.ToBoardString()}\n\n...but found...\n\n{Next(block).ToBoardString()}");
-  }
-
-  [TestMethod]
-  public void LifeHelpers_Next_Beehive() {
-    string blockStr = LifeShapes.BeeHive;
+  [DataTestMethod]
+  [DataRow(LifeShapes.Block)]
+  [DataRow(LifeShapes.BeeHive)]
+  [DataRow(LifeShapes.Loaf)]
+  [DataRow(LifeShapes.Boat)]
+  [DataRow(LifeShapes.Tub)]
+  public void LifeHelpers_Next_StillLifes(string blockStr) {
     bool[,] block = blockStr.ToBoard();
     string expected = block.ToBoardString();
     string actual = Next(block).ToBoardString();
-    Console.WriteLine($"blockStr:\n{blockStr}");
     Assert.AreEqual(expected, actual, $"\n\nExpected:\n{expected}\n\n...but found:\n{actual}");
   }
 
-  // TODO AYS - Write tests for other initial patterns. Use ToBoardString to check the results
+  [DataTestMethod]
+  [DataRow(LifeShapes.Blinker)]
+  [DataRow(LifeShapes.Toad)]
+  [DataRow(LifeShapes.Beacon)]
+  public void LifeHelpers_Next_Oscillators(string blockStr) {
+    // Test the period-2 oscillators by passing them through Next twice
+    bool[,] block = blockStr.ToBoard();
+    string expected = block.ToBoardString();
+    string actual = Next(Next(block)).ToBoardString();
+    Assert.AreEqual(expected, actual, $"\n\nExpected:\n{expected}\n\n...but found:\n{actual}");
+  }
 
   #endregion
 }

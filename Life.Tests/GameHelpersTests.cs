@@ -79,5 +79,12 @@ public class GameHelpersTests {
     Assert.AreEqual(boardStr, board.ToBoardString(), $"Got:\n{board.ToBoardString()}\n");
   }
 
+  [TestMethod]
+  public void GameHelpers_ToBoardString_Boat() {
+    string boardStr = LifeShapes.Boat;
+    bool[,] board = boardStr.ToBoard();
+    Assert.AreEqual(boardStr, board.ToBoardString(), $"Got:\n{board.ToBoardString()}\n");
+  }
+
   #endregion
 }
