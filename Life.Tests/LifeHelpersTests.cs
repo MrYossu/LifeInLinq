@@ -128,7 +128,7 @@ public class LifeHelpersTests {
   [DataRow(28, 4, 4)]
   [DataRow(29, 4, 5)]
   public void LifeHelpers_PosToCoords5x4(int pos, int x, int y) {
-    bool[,] board = new bool[6, 5];
+    bool[,] board = new bool[5, 6];
     int xRes = PosToCoords(board, pos).row;
     int yRes = PosToCoords(board, pos).cols;
     Assert.IsTrue(xRes == x && yRes == y, $"pos: {pos}: - expected ({x}, {y}), found ({xRes}, {yRes})");
