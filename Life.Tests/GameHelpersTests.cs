@@ -1,4 +1,5 @@
-﻿using static Life.Game.GameHelpers;
+﻿using Life.Game;
+using static Life.Game.GameHelpers;
 
 namespace Life.Tests;
 
@@ -8,13 +9,7 @@ public class GameHelpersTests {
 
   [TestMethod]
   public void GameHelpers_ToBoard_Block() {
-    string boardStr =
-      """
-      ....
-      .**.
-      .**.
-      ....
-      """;
+    string boardStr = LifeShapes.Block;
     bool[,] board = boardStr.ToBoard();
     for (int col = 0; col < 4; col++) {
       for (int row = 0; row < 4; row++) {
@@ -29,14 +24,7 @@ public class GameHelpersTests {
 
   [TestMethod]
   public void GameHelpers_ToBoard_Beehive() {
-    string boardStr =
-      """
-      ......
-      ..**..
-      .*..*.
-      ..**..
-      ......
-      """;
+    string boardStr = LifeShapes.BeeHive;
     bool[,] board = boardStr.ToBoard();
     //Console.WriteLine($"Break at {boardStr.Replace(Environment.NewLine, "").Length / boardStr.IndexOf(Environment.NewLine)}");
     //for (int col = 0; col < 5; col++) {
@@ -65,14 +53,7 @@ public class GameHelpersTests {
 
   [TestMethod]
   public void GameHelpers_ToBoard_Boat() {
-    string boardStr =
-      """
-      .....
-      .**..
-      .*.*.
-      ..*..
-      .....
-      """;
+    string boardStr = LifeShapes.Boat;
     bool[,] board = boardStr.ToBoard();
     for (int col = 0; col < 4; col++) {
       for (int row = 0; row < 4; row++) {
@@ -95,27 +76,14 @@ public class GameHelpersTests {
 
   [TestMethod]
   public void GameHelpers_ToBoardString_Block() {
-    string boardStr =
-      """
-      ....
-      .**.
-      .**.
-      ....
-      """;
+    string boardStr = LifeShapes.Block;
     bool[,] board = boardStr.ToBoard();
     Assert.AreEqual(boardStr, board.ToBoardString(), $"Got:\n{board.ToBoardString()}\n");
   }
 
   [TestMethod]
   public void GameHelpers_ToBoardString_Beehive() {
-    string boardStr =
-      """
-      ......
-      ..**..
-      .*..*.
-      ..**..
-      ......
-      """;
+    string boardStr = LifeShapes.BeeHive;
     bool[,] board = boardStr.ToBoard();
     Assert.AreEqual(boardStr, board.ToBoardString(), $"Got:\n{board.ToBoardString()}\n");
   }
