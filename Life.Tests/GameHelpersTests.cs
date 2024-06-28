@@ -26,15 +26,6 @@ public class GameHelpersTests {
   public void GameHelpers_ToBoard_Beehive() {
     string boardStr = LifeShapes.BeeHive;
     bool[,] board = boardStr.ToBoard();
-    //Console.WriteLine($"Break at {boardStr.Replace(Environment.NewLine, "").Length / boardStr.IndexOf(Environment.NewLine)}");
-    //for (int col = 0; col < 5; col++) {
-    //  for (int row = 0; row < 4; row++) {
-    //    Console.Write(board[row, col]?'*':'.');
-    //  }
-    //  Console.WriteLine();
-    //}
-
-
     for (int col = 0; col < 5; col++) {
       for (int row = 0; row < 4; row++) {
         if ((row == 1 && col == 2)

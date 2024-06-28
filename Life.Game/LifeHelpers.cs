@@ -87,8 +87,9 @@ public static class LifeHelpers {
       .ToArray()
       .To2D(board.GetLength(0));
 
-  // board.GetLength(0) is cols
-  // board.GetLength(1) is rows
-  public static (int x, int y) PosToCoords(bool[,] board, int pos) =>
-    (pos / board.GetLength(0), pos % board.GetLength(0));
+  // [2,3] is 2 rows x 3 cols
+  // board.GetLength(0) is rows
+  // board.GetLength(1) is cols
+  public static (int row, int cols) PosToCoords(bool[,] board, int pos) =>
+    (pos / board.GetLength(1), pos % board.GetLength(1));
 }

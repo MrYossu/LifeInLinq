@@ -1,3 +1,4 @@
+using Life.Game;
 using static Life.Game.GameHelpers;
 using static Life.Game.LifeHelpers;
 
@@ -82,21 +83,21 @@ public class LifeHelpersTests {
   #region PosToCoords
 
   [DataTestMethod]
-  [DataRow(0, 0, 0)] // pos, x, y
+  [DataRow(0, 0, 0)] // pos, row, col
   [DataRow(1, 0, 1)]
   [DataRow(2, 0, 2)]
   [DataRow(3, 1, 0)]
   [DataRow(4, 1, 1)]
   [DataRow(5, 1, 2)]
-  public void LifeHelpers_PosToCoords2x3(int pos, int x, int y) {
-    bool[,] board = new bool[2, 3];
-    (int xRes, int yRes) = PosToCoords(board, pos);
-    Assert.AreEqual(x, xRes, $"Expected pos: {pos} -> ({x}, {y}), but found ({xRes}, {yRes})");
-    Assert.AreEqual(y, yRes, $"Expected pos: {pos} -> ({x}, {y}), but found ({xRes}, {yRes})");
+  public void LifeHelpers_PosToCoords2x3(int pos, int row, int col) {
+    bool[,] board = new bool[2, 3]; // 2 rows x 3 cols
+    (int rowRes, int colRes) = PosToCoords(board, pos);
+    Assert.AreEqual(row, rowRes, $"Expected pos: {pos} -> ({row}, {col}), but found ({rowRes}, {colRes})");
+    Assert.AreEqual(col, colRes, $"Expected pos: {pos} -> ({row}, {col}), but found ({rowRes}, {colRes})");
   }
 
   [DataTestMethod]
-  [DataRow(0, 0, 0)] // pos, x, y
+  [DataRow(0, 0, 0)] // pos, row, col
   [DataRow(1, 0, 1)]
   [DataRow(2, 0, 2)]
   [DataRow(3, 0, 3)]
@@ -128,8 +129,8 @@ public class LifeHelpersTests {
   [DataRow(29, 4, 5)]
   public void LifeHelpers_PosToCoords5x4(int pos, int x, int y) {
     bool[,] board = new bool[6, 5];
-    int xRes = PosToCoords(board, pos).x;
-    int yRes = PosToCoords(board, pos).y;
+    int xRes = PosToCoords(board, pos).row;
+    int yRes = PosToCoords(board, pos).cols;
     Assert.IsTrue(xRes == x && yRes == y, $"pos: {pos}: - expected ({x}, {y}), found ({xRes}, {yRes})");
   }
 
@@ -154,14 +155,7 @@ public class LifeHelpersTests {
 
   [TestMethod]
   public void LifeHelpers_Next_Beehive() {
-    string blockStr =
-      """
-      ......
-      ..**..
-      .*..*.
-      ..**..
-      ......
-      """;
+    string blockStr = LifeShapes.BeeHive;
     bool[,] block = blockStr.ToBoard();
     string expected = block.ToBoardString();
     string actual = Next(block).ToBoardString();
