@@ -52,21 +52,4 @@ public static class GameHelpers {
     board[4, 4] = true;
     return board;
   }
-
-  public static void Display(bool[,] board, int maxX, int maxY) {
-    //Console.Clear();
-    //Console.WriteLine(" |" + string.Join("", Enumerable.Range(0, maxX)) + "|");
-    Console.WriteLine(new string('-', maxX + 3));
-    for (int y = 0; y < maxY; y++) {
-      //Console.Write($"{y}");
-      Console.Write("|");
-      for (int x = 0; x < maxX; x++) {
-        Console.Write(board[x, y] ? "*" : "-");
-      }
-
-      Console.WriteLine("|");
-    }
-
-    Console.WriteLine(new string('¯', maxX + 2));
-  }
 }

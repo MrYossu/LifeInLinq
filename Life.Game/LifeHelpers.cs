@@ -58,7 +58,7 @@ public static class LifeHelpers {
    TODO AYS - Although we can use the simple logic below, if we rewrite it as a switch with two int[] (one for births, one for continued life) then we can implement different sets of rules
    */
 
-  public static bool[,] Next(bool[,] board) =>
+  public static bool[,] Next(this bool[,] board) =>
     board.Cast<bool>().ToArray()
       .Select((cell, pos) => {
         (int x, int y) = PosToCoords(board, pos);

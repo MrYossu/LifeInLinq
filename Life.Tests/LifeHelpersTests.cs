@@ -147,7 +147,7 @@ public class LifeHelpersTests {
   public void LifeHelpers_Next_StillLifes(string blockStr) {
     bool[,] block = blockStr.ToBoard();
     string expected = block.ToBoardString();
-    string actual = Next(block).ToBoardString();
+    string actual = block.Next().ToBoardString();
     Assert.AreEqual(expected, actual, $"\n\nExpected:\n{expected}\n\n...but found:\n{actual}");
   }
 
@@ -159,7 +159,7 @@ public class LifeHelpersTests {
     // Test the period-2 oscillators by passing them through Next twice
     bool[,] block = blockStr.ToBoard();
     string expected = block.ToBoardString();
-    string actual = Next(Next(block)).ToBoardString();
+    string actual = block.Next().Next().ToBoardString();
     Assert.AreEqual(expected, actual, $"\n\nExpected:\n{expected}\n\n...but found:\n{actual}");
   }
 

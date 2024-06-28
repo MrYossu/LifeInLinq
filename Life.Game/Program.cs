@@ -8,7 +8,7 @@ Console.ReadKey();
 Console.Clear();
 while (true) {
   Console.WriteLine(board.ToBoardString(true));
-  board = Next(board);
+  board = board.Next();
   Thread.Sleep(400);
   Console.Clear();
 }
