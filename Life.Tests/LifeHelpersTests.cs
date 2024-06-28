@@ -130,7 +130,7 @@ public class LifeHelpersTests {
   public void LifeHelpers_PosToCoords5x4(int pos, int x, int y) {
     bool[,] board = new bool[5, 6];
     int xRes = PosToCoords(board, pos).row;
-    int yRes = PosToCoords(board, pos).cols;
+    int yRes = PosToCoords(board, pos).col;
     Assert.IsTrue(xRes == x && yRes == y, $"pos: {pos}: - expected ({x}, {y}), found ({xRes}, {yRes})");
   }
 
