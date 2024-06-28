@@ -14,8 +14,13 @@ public static class GameHelpers {
       .ToArray()
       .To2D(b.Replace(Environment.NewLine, "").Length / b.IndexOf(Environment.NewLine));
 
+  /// <summary>
+  /// Converts a 2D bool array that represents a Life game into a string that can be displayed
+  /// </summary>
+  /// <param name="board">The Life board as a 2D bool array</param>
+  /// <returns></returns>
   public static string ToBoardString(this bool[,] board) {
-    int dim = board.GetLength(0);
+    int dim = board.GetLength(1);
     string str = board.Cast<bool>().Select(c => c ? "*" : ".").JoinStr("");
     return Enumerable.Range(0, str.Length / dim)
       .Select(i => str.Substring(i * dim, dim))
