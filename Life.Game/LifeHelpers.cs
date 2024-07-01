@@ -30,40 +30,10 @@ public static class LifeHelpers {
         ? 1
         : 0);
 
-  /*
-    At each step in time, the following transitions occur:
-        Any live cell with fewer than two live neighbours dies, as if by underpopulation.
-        Any live cell with two or three live neighbours lives on to the next generation.
-        Any live cell with more than three live neighbours dies, as if by overpopulation.
-        Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
-
-    As a table...
-      live	count	result
-        t    1      f
-        t    2      t
-        t    3      t
-        t    4      f
-        t    5      f
-        t    6      f
-        t    7      f
-        t    8      f
-        f    1      f
-        f    2      f
-        f    3      t
-        f    4      f
-        f    5      f
-        f    6      f
-        f    7      f
-        f    8      f
-
-        So cell is alive if...
-        t    2      t
-        t    3      t
-        f    3      t
-
-   TODO AYS - Although we can use the simple logic below, if we rewrite it as a switch with two int[] (one for births, one for continued life) then we can implement different sets of rules
-   */
-
+  // The standard Life rules are known as B3/S23, meaning that a cell is born if it has 3 live neighbours and survives if it has 2 or 3.
+  // The code below was written to allow us to use different rules. At the moment the two rules are hard-coded in the born and survives arrays,
+  // but if allow these to be passed in, we can use any rules we like. Even better, if we implement a helper method that takes a string
+  // such as B3/S23 and parses it into two int arrays, then we can pass in the rules as a string.
   public static bool[,] Next(this bool[,] board) =>
     board.Cast<bool>().ToArray()
       .Select((cell, pos) => {
