@@ -1,4 +1,5 @@
 using Life.Game;
+using Pixata.Extensions;
 using static Life.Game.GameHelpers;
 using static Life.Game.LifeHelpers;
 
@@ -133,6 +134,27 @@ public class LifeHelpersTests {
     int yRes = PosToCoords(board, pos).col;
     Assert.IsTrue(xRes == x && yRes == y, $"pos: {pos}: - expected ({x}, {y}), found ({xRes}, {yRes})");
   }
+
+  #endregion
+
+  #region GetRules
+
+  [TestMethod]
+  public void LifeHelpers_GetRules_B3S23() {
+    List<int[]> rules = GetRules("B3/S23");
+    CollectionAssert.AreEqual(new[] { 3 }, rules[0]);
+    CollectionAssert.AreEqual(new[] { 2, 3 }, rules[1]);
+  }
+
+  [TestMethod]
+  public void LifeHelpers_GetRules_B23S34() {
+    List<int[]> rules = GetRules("B23/S34");
+    CollectionAssert.AreEqual(new[] { 2, 3 }, rules[0]);
+    CollectionAssert.AreEqual(new[] { 3, 4 }, rules[1]);
+  }
+
+  private static string IntArrayToString(int[] nums) =>
+    nums.Select(n => n.ToString()).JoinStr();
 
   #endregion
 

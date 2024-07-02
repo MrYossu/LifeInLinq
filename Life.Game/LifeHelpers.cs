@@ -1,6 +1,4 @@
-﻿using System.Data;
-
-namespace Life.Game;
+﻿namespace Life.Game;
 
 public static class LifeHelpers {
   /// <summary>
@@ -54,6 +52,9 @@ public static class LifeHelpers {
   public static bool[,] NextSelect(this bool[,] board) =>
     NextSelect(board, [3], [2, 3]);
 
+  public static bool[,] NextSelect(this bool[,] board, string rules) =>
+    NextSelect(board, GetRules(rules)[0], GetRules(rules)[1]);
+
   public static bool[,] NextSelect(this bool[,] board, int[] born, int[] survives) =>
     board.Cast<bool>().ToArray()
       .Select((cell, pos) => new { cell, coord = PosToCoords(board, pos) })
@@ -73,4 +74,15 @@ public static class LifeHelpers {
   // board.GetLength(1) is cols
   public static (int row, int col) PosToCoords(bool[,] board, int pos) =>
     (pos / board.GetLength(1), pos % board.GetLength(1));
+
+  /// <summary>
+  /// Convert Life rules in the standard form (eg B3/S23 for the regular rules) into two int arrays that can be used by Next
+  /// </summary>
+  /// <param name="rule">A string in the form B3/S23, which specifies that a cell will be born if it has exactly 2 live neighbours, and will survive if it has 2 or 3 live neighbours</param>
+  /// <returns></returns>
+  public static List<int[]> GetRules(string rule) =>
+    rule.Split("/")
+      .Select(r => r.Substring(1))
+      .Select(r => r.Select(c => Convert.ToInt32(c) - '0').ToArray())
+      .ToList();
 }

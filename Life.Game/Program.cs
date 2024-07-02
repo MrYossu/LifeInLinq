@@ -8,7 +8,7 @@ Console.ReadKey();
 Console.Clear();
 while (true) {
   Console.WriteLine(board.ToBoardString(true));
-  board = board.Next();
+  board = board.NextSelect("B3/S23");
   Thread.Sleep(400);
   Console.Clear();
 }
