@@ -4,13 +4,14 @@ using static Life.Game.GameHelpers;
 using static Life.Game.LifeHelpers;
 
 bool[,] board = InitialiseRandom(50, 100);
+board = LifeShapes.GosperGliderGun.ToBoard();
 Console.WriteLine("Press any key to start");
 Console.ReadKey();
 Console.Clear();
 while (true) {
   Console.WriteLine(board.ToBoardString(true));
-  board = board.NextSelect("B1/S12");
-  Thread.Sleep(400);
+  board = board.NextSelect();
+  Thread.Sleep(100);
   Console.Clear();
 }
 
