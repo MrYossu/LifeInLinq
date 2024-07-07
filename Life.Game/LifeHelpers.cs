@@ -22,9 +22,9 @@ public static class LifeHelpers {
   }
 
   public static int Count(bool[,] board, int x, int y) =>
-    new[] { -1, 0, 1, -1, 1, -1, 0, 1 }.Zip(new[] { 1, 1, 1, 0, 0, -1, -1, -1 })
-      .Sum(o => (x + o.First >= 0) && (x + o.First < board.GetLength(0)) && (y + o.Second >= 0) &&
-                (y + o.Second < board.GetLength(1) && board[x + o.First, y + o.Second])
+    new List<(int, int)> { (-1, 1), (0, 1), (1, 1), (-1, 0), (1, 0), (-1, -1), (0, -1), (1, -1) }
+      .Sum(o => (x + o.Item1 >= 0) && (x + o.Item1 < board.GetLength(0)) && (y + o.Item2 >= 0) &&
+                (y + o.Item2 < board.GetLength(1) && board[x + o.Item1, y + o.Item2])
         ? 1
         : 0);
 
