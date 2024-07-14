@@ -2,6 +2,6 @@
 
 My attempt to code John H. Conway's Game of Life in Linq, or at least, in as much Linq as possible.
 
-Why? Why not! 😎
+There is a bit of a story behind why I decided to try this, which I rambled on about in a [blog post]([https://www.pixata.co.uk](https://www.pixata.co.uk/2024/07/08/implementing-conways-game-of-life-in-linq/)).
 
-Actually, there is a bit of a story behind why I decided to try this, but I ahven't time to type it up yet. When/if I get the code working, I'll probably add a [blog post](https://www.pixata.co.uk) with more details. But don't hold your breath!
+This is the sample code for the blog post.
